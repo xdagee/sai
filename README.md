@@ -1,4 +1,4 @@
-## Project: SAI — Learning Interface
+## SAI — AI Chat Learning Interface
 
 A single‑page, animated “learning” UI with a feedback form that stores entries locally in the browser.
 
@@ -50,6 +50,3 @@ A single‑page, animated “learning” UI with a feedback form that stores ent
 
 ## License
 MIT.
-
-## Copyright
-(c) STEMAIDE Africa LTD.
