@@ -26,6 +26,15 @@ body {
     position: relative;
 }
 
+/* Visually Hidden (for accessible status without layout impact) */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
 /* Background Effects */
 .background-effects {
     position: fixed;
@@ -361,6 +370,12 @@ main {
     gap: 1rem;
 }
 
+#feedbackForm label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+
 #feedbackInput {
     background: rgba(5, 10, 20, 0.7);
     border: 1px solid var(--secondary);
@@ -378,6 +393,17 @@ main {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+}
+
+/* Improved focus styles for accessibility */
+#feedbackForm button:focus,
+#feedbackInput:focus {
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.35);
+}
+
+.form-help {
+    font-size: 0.9rem;
+    color: rgba(224, 247, 255, 0.8);
 }
 
 #feedbackForm button {
@@ -403,6 +429,16 @@ main {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(153, 0, 255, 0.2);
+}
+
+/* Reduced Motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 .feedback-display h4 {

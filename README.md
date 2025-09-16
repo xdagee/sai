@@ -14,6 +14,9 @@ A single‑page, animated “learning” UI with a feedback form that stores ent
 - **Google Fonts**: Orbitron, Exo 2
 - **localStorage** for persistence
 
+### Note on Tailwind/Lottie
+- The current MVP uses vanilla CSS and CSS animations to keep the footprint small and avoid a build step. TailwindCSS and Lottie can be integrated later without disrupting the current structure.
+
 ## Project Structure
 - `index.html` — markup for layout, robot, feedback form, and containers.
 - `styles.css` — variables, background/particle effects, robot/gear animations, responsive styles.
@@ -26,6 +29,10 @@ A single‑page, animated “learning” UI with a feedback form that stores ent
 - Move your mouse or touch to “wake” the animation; it also pulses periodically.
 - Submit feedback in the form; recent feedback appears in a list and persists across reloads.
 - To clear feedback: run `localStorage.removeItem('aiFeedbacks')` in DevTools Console.
+
+### Accessibility & Motion
+- The feedback form includes a visible label and helper text; status updates are announced via an `aria-live` region.
+- If your system has “Reduce motion” enabled, most animations are minimized via `prefers-reduced-motion`.
 
 ## Key Implementation Notes
 - **Animation triggers**: hover (`mouseenter`/`mouseleave`), touch (`touchstart`/`touchend`), and a 15s interval that toggles an `active` class on `#animationContainer`.

@@ -59,6 +59,7 @@ function setupFeedback() {
     const feedbackForm = document.getElementById('feedbackForm');
     const feedbackInput = document.getElementById('feedbackInput');
     const feedbackList = document.getElementById('feedbackList');
+    const feedbackStatus = document.getElementById('feedbackStatus');
     
     // Load existing feedback from localStorage
     loadFeedback();
@@ -67,10 +68,19 @@ function setupFeedback() {
         e.preventDefault();
         
         const feedbackText = feedbackInput.value.trim();
-        if (feedbackText) {
+        if (feedbackText && feedbackText.length <= 500) {
             addFeedback(feedbackText);
             saveFeedback(feedbackText);
             feedbackInput.value = '';
+            // announce success visually and via ARIA live region
+            if (feedbackStatus) {
+                feedbackStatus.textContent = 'Thanks! Your feedback has been received.';
+                feedbackStatus.classList.remove('visually-hidden');
+                setTimeout(() => {
+                    feedbackStatus.classList.add('visually-hidden');
+                    feedbackStatus.textContent = '';
+                }, 3000);
+            }
         }
     });
 }
@@ -120,12 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFeedback();
     
     // Add subtle periodic activation of animation
-    setInterval(() => {
-        const animationContainer = document.getElementById('animationContainer');
-        animationContainer.classList.add('active');
-        
-        setTimeout(() => {
-            animationContainer.classList.remove('active');
-        }, 3000);
-    }, 15000);
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+        setInterval(() => {
+            const animationContainer = document.getElementById('animationContainer');
+            animationContainer.classList.add('active');
+            
+            setTimeout(() => {
+                animationContainer.classList.remove('active');
+            }, 3000);
+        }, 15000);
+    }
 });

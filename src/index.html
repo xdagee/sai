@@ -47,9 +47,12 @@
             
             <div class="feedback-section">
                 <h3>Share feedback to help me learn</h3>
-                <form id="feedbackForm">
-                    <textarea id="feedbackInput" placeholder="Enter your thoughts, questions, or suggestions..." required></textarea>
+                <form id="feedbackForm" aria-describedby="feedbackHelp feedbackStatus">
+                    <label for="feedbackInput">Your feedback</label>
+                    <textarea id="feedbackInput" name="feedback" placeholder="Enter your thoughts, questions, or suggestions..." maxlength="500" required aria-describedby="feedbackHelp"></textarea>
+                    <p id="feedbackHelp" class="form-help">Max 500 characters. Please avoid personal data.</p>
                     <button type="submit">Send Feedback</button>
+                    <p id="feedbackStatus" class="visually-hidden" aria-live="polite"></p>
                 </form>
                 <div class="feedback-display" id="feedbackDisplay">
                     <h4>Recent Feedback:</h4>
