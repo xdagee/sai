@@ -43,6 +43,3 @@ A single‑page, animated “learning” UI with a feedback form that stores ent
 
 ## License
 MIT.
-
-## Copyright
-(c) STEMAIDE Africa LTD.
