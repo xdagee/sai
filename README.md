@@ -1,4 +1,4 @@
-## Project: SAI — Learning Interface
+## SAI — AI Chat Learning Interface
 
 A single‑page, animated “learning” UI with a feedback form that stores entries locally in the browser.
 
