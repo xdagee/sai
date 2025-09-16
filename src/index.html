@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAI Chatbot - Learning Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-effects"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="logo">S<span>AI</span></h1>
+        </header>
+        
+        <main>
+            <div class="learning-animation" id="animationContainer">
+                <div class="robot-frame">
+                    <div class="robot-head">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                    </div>
+                    <div class="robot-body">
+                        <div class="circuit-line"></div>
+                        <div class="circuit-line"></div>
+                        <div class="circuit-line"></div>
+                    </div>
+                </div>
+                <div class="data-stream">
+                    <div class="data-bit"></div>
+                    <div class="data-bit"></div>
+                    <div class="data-bit"></div>
+                    <div class="data-bit"></div>
+                    <div class="data-bit"></div>
+                </div>
+                <div class="gears">
+                    <div class="gear large"></div>
+                    <div class="gear medium"></div>
+                    <div class="gear small"></div>
+                </div>
+            </div>
+            
+            <div class="message-container">
+                <h2 id="learningMessage">I am learning. I'll be ready soon.</h2>
+            </div>
+            
+            <div class="feedback-section">
+                <h3>Share feedback to help me learn</h3>
+                <form id="feedbackForm">
+                    <textarea id="feedbackInput" placeholder="Enter your thoughts, questions, or suggestions..." required></textarea>
+                    <button type="submit">Send Feedback</button>
+                </form>
+                <div class="feedback-display" id="feedbackDisplay">
+                    <h4>Recent Feedback:</h4>
+                    <ul id="feedbackList"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
