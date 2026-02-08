@@ -102,10 +102,11 @@ function addFeedback(text) {
 
 function saveFeedback(text) {
     let feedbacks = JSON.parse(localStorage.getItem('aiFeedbacks')) || [];
-    feedbacks.unshift({
+    const newFeedback = {
         text: text,
         timestamp: new Date().toISOString()
-    });
+    };
+    feedbacks.unshift(newFeedback);
     
     // Keep only the last 10 feedbacks
     if (feedbacks.length > 10) {
@@ -113,6 +114,43 @@ function saveFeedback(text) {
     }
     
     localStorage.setItem('aiFeedbacks', JSON.stringify(feedbacks));
+    
+    // Send feedback to backend for SFT training
+    sendFeedbackToBackend(newFeedback);
+}
+
+function sendFeedbackToBackend(feedback) {
+    // Format data for SFT training
+    const trainingData = {
+        prompt: "User feedback to improve the AI assistant",
+        completion: feedback.text,
+        timestamp: feedback.timestamp
+    };
+    
+    // In a real implementation, you would send this to your actual backend endpoint
+    // For now, we'll just log it to the console
+    console.log("Sending feedback for SFT training:", trainingData);
+    
+    // Example of how you would send to a backend (uncomment and modify as needed):
+    /*
+    fetch('https://your-backend-api.com/sft-training-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(trainingData),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Feedback successfully sent for SFT training');
+        } else {
+            console.error('Failed to send feedback for SFT training');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending feedback for SFT training:', error);
+    });
+    */
 }
 
 function loadFeedback() {
@@ -123,11 +161,51 @@ function loadFeedback() {
     });
 }
 
+// Send all feedback data to backend for SFT training
+function sendAllFeedbackToBackend() {
+    const feedbacks = JSON.parse(localStorage.getItem('aiFeedbacks')) || [];
+    
+    // Format data for SFT training
+    const trainingData = feedbacks.map(feedback => ({
+        prompt: "User feedback to improve the AI assistant",
+        completion: feedback.text,
+        timestamp: feedback.timestamp
+    }));
+    
+    // In a real implementation, you would send this to your actual backend endpoint
+    // For now, we'll just log it to the console
+    console.log("Sending all feedback for SFT training:", trainingData);
+    
+    // Example of how you would send to a backend (uncomment and modify as needed):
+    /*
+    fetch('https://your-backend-api.com/sft-training-data/batch', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(trainingData),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('All feedback successfully sent for SFT training');
+        } else {
+            console.error('Failed to send feedback for SFT training');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending feedback for SFT training:', error);
+    });
+    */
+}
+
 // Initialize everything when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
     setupAnimation();
     setupFeedback();
+    
+    // Send all existing feedback to backend on page load
+    sendAllFeedbackToBackend();
     
     // Add subtle periodic activation of animation
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

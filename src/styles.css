@@ -431,16 +431,6 @@ main {
     border-top: 1px solid rgba(153, 0, 255, 0.2);
 }
 
-/* Reduced Motion: respect user preference */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
 .feedback-display h4 {
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 1rem;
